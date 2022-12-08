@@ -1,8 +1,21 @@
-<h2><%= @participant.first_name %> <%= @participant.last_name %></h2>
+<h2><%= @participant.first_name.capitalize %> <%= @participant.last_name.capitalize %></h2>
 
-<%= link_to "Everyone", participants_path, class:"btn btn-primary"%>
 <%= link_to "⚙️", edit_participant_path(@participant), class:"btn btn-praimary"%>
 <%= link_to "🗑️",
   participant_path(@participant),
   data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-danger"
 %>
+<p><strong><%= @participant.first_name.capitalize %> Would like for Christmas</strong></p>
+
+<%= simple_form_for [@participant, @wishlist] do |f| %>
+  <%= f.input :content %>
+  <%= f.submit "Send your wishlist to Santa", class: "btn btn-primary my-2" %>
+<% end %>
+
+<% @participant.wishlists.each do |wishlist| %>
+  <p><%= wishlist.created_at.strftime("%d/%m/%Y") %></p>
+  <p><%= wishlist.content %></p>
+<% end %>
+
+<br>
+<%= link_to "Everyone", participants_path, class:"btn btn-primary my-2"%>

@@ -5,7 +5,7 @@ class ParticipantsController < ApplicationController
   end
 
   def show
-
+    @wishlist = Wishlist.new
   end
 
   def new

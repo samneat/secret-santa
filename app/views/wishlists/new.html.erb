@@ -1,0 +1,5 @@
+<h1>What would you like for Christmas this year?</h1>
+<%= simple_form_for [@participant, @wishlist] do |f| %>
+  <%= f.input :content %>
+  <%= f.submit "Send to Santa", class: "btn btn-primary" %>
+<% end %>

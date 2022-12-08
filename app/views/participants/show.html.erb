@@ -1,8 +1,8 @@
 <h2><%= @participant.first_name %> <%= @participant.last_name %></h2>
 
-<%= link_to "All Participants", participants_path%>
-<%= link_to "Edit Participant", edit_participant_path(@participant)%>
-<%= link_to "Delete",
+<%= link_to "Everyone", participants_path, class:"btn btn-primary"%>
+<%= link_to "⚙️", edit_participant_path(@participant), class:"btn btn-praimary"%>
+<%= link_to "🗑️",
   participant_path(@participant),
-  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-danger"
 %>

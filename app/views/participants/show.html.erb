@@ -1,0 +1,8 @@
+<h2><%= @participant.first_name %> <%= @participant.last_name %></h2>
+
+<%= link_to "All Participants", participants_path%>
+<%= link_to "Edit Participant", edit_participant_path(@participant)%>
+<%= link_to "Delete",
+  participant_path(@participant),
+  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+%>

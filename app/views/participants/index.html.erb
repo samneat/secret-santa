@@ -1,0 +1,8 @@
+<h1>These are the people involved</h1>
+<ul>
+  <% @participants.each do |participant| %>
+    <li><%= link_to participant_path(participant) do %><%= participant.first_name %> <%= participant.last_name %><% end %></li>
+  <% end %>
+</ul>
+
+  <%= link_to "Add more", new_participant_path%>

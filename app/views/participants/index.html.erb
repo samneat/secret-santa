@@ -19,21 +19,23 @@
 <% not_giving_yet = @participants.to_a %>
 <% not_receiving_yet = @participants.to_a %>
 
+<%= while not_giving_yet.length > 0 do %>
 
-<% gift_giver = not_giving_yet.shuffle![0].first_name.capitalize %>
-<% if not_receiving_yet.include?(gift_giver) %>
-  <% not_receiving_yet.delete(gift_giver)  %>
-  <% gift_receiver = not_receiving_yet.shuffle![0].first_name.capitalize %>
-  <% not_receiving_yet.append(gift_giver)  %>
-<% else %>
-  <% gift_receiver = not_receiving_yet.shuffle![0].first_name.capitalize %>
+  <% gift_giver = not_giving_yet.shuffle![0]%>
+  <% if not_receiving_yet.include?(gift_giver) %>
+    <% not_receiving_yet.delete(gift_giver)  %>
+    <% gift_receiver = not_receiving_yet.shuffle![0] %>
+    <% not_receiving_yet.append(gift_giver)  %>
+  <% else %>
+    <% gift_receiver = not_receiving_yet.shuffle![0] %>
+  <% end %>
+
+  <% not_giving_yet.delete(gift_giver) %>
+  <% not_receiving_yet.delete(gift_receiver) %>
+
+  <p><%= gift_giver.first_name.capitalize %> has to buy a present for <%= gift_receiver.first_name.capitalize %></p>
+
 <% end %>
-
-<% not_giving_yet.delete(gift_giver) %>
-<% not_receiving_yet.delete(gift_receiver) %>
-
-<p><%= gift_giver %> has to buy a present for <%= gift_receiver %></p>
-
 
 <%= link_to "Add more", new_participant_path, class:"btn btn-success"%>
 <a href="" class='btn btn-success'>Pair</a>

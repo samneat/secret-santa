@@ -8,7 +8,7 @@
 
 <%= simple_form_for [@participant, @wishlist] do |f| %>
   <%= f.input :content %>
-  <%= f.submit "Send your wishlist to Santa", class: "btn btn-success my-2" %>
+  <%= f.submit "Send your wishlist to Santa", class: "btn btn-success my-3" %>
 <% end %>
 
 <% if @participant.wishlists.count ==0 %>
@@ -19,9 +19,8 @@
 
 
 <% @participant.wishlists.each do |wishlist| %>
-  <p><%= wishlist.created_at.strftime("%d/%m/%Y") %></p>
-  <p><%= wishlist.content %></p>
+  <p><%= wishlist.created_at.strftime("%d/%m/%Y") %> - <%= wishlist.content %></p>
 <% end %>
 
-<br>
+
 <%= link_to "Everyone", participants_path, class:"btn btn-success my-2"%>

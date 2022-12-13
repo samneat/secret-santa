@@ -24,7 +24,7 @@
   <% not_giving_yet.delete(gift_giver) %>
   <% not_receiving_yet.delete(gift_receiver) %>
 
-  <p><%= gift_giver.first_name.capitalize %> has to buy a present for <%= gift_receiver.first_name.capitalize %></p>
+  <p><%= gift_giver.first_name.capitalize %> <%= gift_giver.last_name.capitalize %> has to buy a present for <%= gift_receiver.first_name.capitalize %> <%= gift_receiver.last_name.capitalize %></p>
 
 <% end %>
 

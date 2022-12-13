@@ -16,5 +16,11 @@
   <% end %>
 </ul>
 
+
+<% shuffled = @participants.shuffle.each_slice(2)%>
+<%= shuffled.each do |participant|%>
+<p><%= participant %></p>
+<% end %>
+
 <%= link_to "Add more", new_participant_path, class:"btn btn-success"%>
 <a href="" class='btn btn-success'>Pair</a>

@@ -16,11 +16,24 @@
   <% end %>
 </ul>
 
+<% not_giving_yet = @participants.to_a %>
+<% not_receiving_yet = @participants.to_a %>
 
-<% shuffled = @participants.shuffle.each_slice(2)%>
-<%= shuffled.each do |participant|%>
-<p><%= participant %></p>
+
+<% gift_giver = not_giving_yet.shuffle![0].first_name.capitalize %>
+<% if not_receiving_yet.include?(gift_giver) %>
+  <% not_receiving_yet.delete(gift_giver)  %>
+  <% gift_receiver = not_receiving_yet.shuffle![0].first_name.capitalize %>
+  <% not_receiving_yet.append(gift_giver)  %>
+<% else %>
+  <% gift_receiver = not_receiving_yet.shuffle![0].first_name.capitalize %>
 <% end %>
+
+<% not_giving_yet.delete(gift_giver) %>
+<% not_receiving_yet.delete(gift_receiver) %>
+
+<p><%= gift_giver %> has to buy a present for <%= gift_receiver %></p>
+
 
 <%= link_to "Add more", new_participant_path, class:"btn btn-success"%>
 <a href="" class='btn btn-success'>Pair</a>

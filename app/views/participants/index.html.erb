@@ -1,7 +1,18 @@
 <h1>These are the people involved</h1>
+
+<%= form_with url: participants_path, method: :get, class: "d-flex" do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Look for someone"
+  %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
+
+
 <ul>
   <% @participants.each do |participant| %>
-    <li><%= link_to participant_path(participant) do %><%= participant.first_name %> <%= participant.last_name %><% end %></li>
+    <li><%= link_to participant_path(participant) do %><%= participant.first_name.capitalize %> <%= participant.last_name.capitalize %><% end %></li>
   <% end %>
 </ul>
 

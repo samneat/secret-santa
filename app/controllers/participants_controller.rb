@@ -1,7 +1,11 @@
 class ParticipantsController < ApplicationController
   before_action :set_participant, only: %i[show edit update destroy]
   def index
-    @participants = Participant.all
+    if params[:query].present?
+      @participants = Participant.where(first_name: params[:query])
+    else
+      @participants = Participant.all
+    end
   end
 
   def show
